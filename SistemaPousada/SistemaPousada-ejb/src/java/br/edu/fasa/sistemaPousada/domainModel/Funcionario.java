@@ -17,7 +17,7 @@ public class Funcionario implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name="Nome")
+    @Column(name="Nome",length=255,nullable=false)  //false = not null
     private String nome;
     @Column(name="Cpf")
     private String cpf;

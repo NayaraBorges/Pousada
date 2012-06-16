@@ -5,8 +5,6 @@
 package br.edu.fasa.sistemaPousada.domainModel;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -15,55 +13,34 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Eventos")
-public class Evento implements Serializable{
+public class Evento extends Servico implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="Preco")
+    @Column(name="Preco", nullable=false)
     private float preco;
-    @Column(name="Descricao")
-    private String descricao;
-    @Column(name="Data")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date data;
-    @Column(name="Hora")
-    @Temporal(javax.persistence.TemporalType.TIME)
-    private Time hora;
 
     public Evento() {
     }
 
-    public Evento(Long id, float preco, String descricao, Date data, Time hora) {
+    public Evento(Long id, String descricao, String tipo) {
+        super(id, descricao, tipo);
+    }
+
+    public Evento(Long id, float preco) {
         this.id = id;
         this.preco = preco;
-        this.descricao = descricao;
-        this.data = data;
-        this.hora = hora;
     }
 
-    public Date getData() {
-        return data;
+    public float getPreco() {
+        return preco;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Time getHora() {
-        return hora;
-    }
-
-    public void setHora(Time hora) {
-        this.hora = hora;
-    }
+    
 
     public Long getId() {
         return id;
@@ -73,12 +50,29 @@ public class Evento implements Serializable{
         this.id = id;
     }
 
-    public float getPreco() {
-        return preco;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
-    public void setPreco(float preco) {
-        this.preco = preco;
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Evento)) {
+            return false;
+        }
+        Evento other = (Evento) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.edu.fasa.sistemaPousada.domainModel.Evento[ id=" + id + " ]";
     }
     
 }

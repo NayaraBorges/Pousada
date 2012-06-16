@@ -5,8 +5,6 @@
 package br.edu.fasa.sistemaPousada.domainModel;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -15,36 +13,30 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Chales")
-public class Chale implements Serializable{
+public class Chale extends Servico implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="Preco")
+    @Column(name="Preco", nullable=false)
     private float preco;
-    @Column(name="Descricao")
-    private String descricao;
-    @Column(name="Data")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date data;
-    @Column(name="Hora")
-    @Temporal(javax.persistence.TemporalType.TIME)
-    private Time hora;
-    @Column(name="Cor")
+    @Column(name="Cor", nullable=true)
     private String cor;
-    @Column(name="Status")
+    @Column(name="Status", nullable=false)
     private boolean status;
-    @Column(name="Capacidade")
+    @Column(name="Capacidade", nullable=false)
     private int capacidade;
 
     public Chale() {
     }
 
-    public Chale(Long id, float preco, String descricao, Date data, Time hora, String cor, boolean status, int capacidade) {
+    public Chale(Long id, String descricao, String tipo) {
+        super(id, descricao, tipo);
+    }
+
+    public Chale(Long id, float preco, String cor, boolean status, int capacidade) {
         this.id = id;
         this.preco = preco;
-        this.descricao = descricao;
-        this.data = data;
-        this.hora = hora;
         this.cor = cor;
         this.status = status;
         this.capacidade = capacidade;
@@ -66,38 +58,6 @@ public class Chale implements Serializable{
         this.cor = cor;
     }
 
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Time getHora() {
-        return hora;
-    }
-
-    public void setHora(Time hora) {
-        this.hora = hora;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public float getPreco() {
         return preco;
     }
@@ -113,6 +73,39 @@ public class Chale implements Serializable{
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Chale)) {
+            return false;
+        }
+        Chale other = (Chale) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.edu.fasa.sistemaPousada.domainModel.Chale[ id=" + id + " ]";
+    }
     
 }

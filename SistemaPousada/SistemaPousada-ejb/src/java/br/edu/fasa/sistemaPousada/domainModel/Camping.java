@@ -13,20 +13,25 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Camping")
-public class Camping implements Serializable{
+public class Camping extends Servico implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="Localizacao")
+    @Column(name="Localizacao", nullable=false)
     private String localizacao;
-    @Column(name="Preco")
+    @Column(name="Preco", nullable=false)
     private float preco;
-    @Column(name="Capacidade")
+    @Column(name="Capacidade", nullable=false)
     private int capacidade;
-    @Column(name="Status")
+    @Column(name="Status", nullable=false)
     private boolean status;
-    
+
     public Camping() {
+    }
+
+    public Camping(Long id, String descricao, String tipo) {
+        super(id, descricao, tipo);
     }
 
     public Camping(Long id, String localizacao, float preco, int capacidade, boolean status) {
@@ -43,14 +48,6 @@ public class Camping implements Serializable{
 
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getLocalizacao() {
@@ -76,6 +73,39 @@ public class Camping implements Serializable{
     public void setStatus(boolean status) {
         this.status = status;
     }
+    
 
-      
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Camping)) {
+            return false;
+        }
+        Camping other = (Camping) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.edu.fasa.sistemaPousada.domainModel.Camping[ id=" + id + " ]";
+    }
+    
 }

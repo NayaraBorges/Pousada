@@ -13,42 +13,23 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Refeicoes")
-public class Refeicao implements Serializable{
-    
+public class Refeicao extends Servico implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="Nome")
+    @Column(name="Nome", nullable=false)
     private String nome;
-    @Column(name="Preco")
+    @Column(name="Preco", nullable=false)
     private float preco;
-    @Column(name="Descricao")
-    private String descricao;
 
     public Refeicao() {
     }
 
-    public Refeicao(Long id, String nome, float preco, String descricao) {
+    public Refeicao(Long id, String nome, float preco) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
-        this.descricao = descricao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -67,5 +48,38 @@ public class Refeicao implements Serializable{
         this.preco = preco;
     }
     
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Refeicao)) {
+            return false;
+        }
+        Refeicao other = (Refeicao) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.edu.fasa.sistemaPousada.domainModel.Refeicao[ id=" + id + " ]";
+    }
     
 }

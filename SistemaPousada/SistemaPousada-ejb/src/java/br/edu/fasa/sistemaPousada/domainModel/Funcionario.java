@@ -13,46 +13,48 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Funcionarios")
-public class Funcionario implements Serializable{
+public class Funcionario implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name="Nome",length=255,nullable=false)  //false = not null
     private String nome;
-    @Column(name="Cpf")
+    @Column(name="Cpf", length=11, nullable=false)
     private String cpf;
-    @Column(name="Identidade")
+    @Column(name="Identidade", length=8, nullable=false)
     private String identidade;
-    @Column(name="Naturalidade")
+    @Column(name="Naturalidade", nullable=false)
     private String naturalidade;
-    @Column(name="Email")
+    @Column(name="Email", nullable=false)
     private String email;
-    @Column(name="Telefone")
+    @Column(name="Telefone", length=10, nullable=false)
     private String telefone;
-    @Column(name="End_rua")
+    @Column(name="Telefone1", length=10, nullable=false)
+    private String telefone1;
+    @Column(name="End_rua", nullable=false)
     private String end_rua;
-    @Column(name="End_bairro")
+    @Column(name="End_bairro", nullable=false)
     private String end_bairro;
-    @Column(name="End_numero")
+    @Column(name="End_numero", nullable=false)
     private int end_numero;
-    @Column(name="End_complemento")
-    private int end_complemento;
-    @Column(name="End_cidade")
+    @Column(name="End_complemento", nullable=false)
+    private String end_complemento;
+    @Column(name="End_cidade", nullable=false)
     private String end_cidade;
-    @Column(name="End_cep")
+    @Column(name="End_cep", length=8, nullable=false)
     private String end_cep;
-    @Column(name="Turno")
+    @Column(name="Turno", nullable=false)
     private String turno;
-    @Column(name="Setor")
+    @Column(name="Setor", nullable=false)
     private String setor;
-    @Column(name="End_Estado")
+    @Column(name="End_Estado", nullable=false)
     private String end_estado;
 
-    
     public Funcionario() {
     }
 
-    public Funcionario(Long id, String nome, String cpf, String identidade, String naturalidade, String email, String telefone, String end_rua, String end_bairro, int end_numero, int end_complemento, String end_cidade, String end_cep, String turno, String setor, String end_estado) {
+    public Funcionario(Long id, String nome, String cpf, String identidade, String naturalidade, String email, String telefone, String telefone1, String end_rua, String end_bairro, int end_numero, String end_complemento, String end_cidade, String end_cep, String turno, String setor, String end_estado) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -60,6 +62,7 @@ public class Funcionario implements Serializable{
         this.naturalidade = naturalidade;
         this.email = email;
         this.telefone = telefone;
+        this.telefone1 = telefone1;
         this.end_rua = end_rua;
         this.end_bairro = end_bairro;
         this.end_numero = end_numero;
@@ -111,11 +114,11 @@ public class Funcionario implements Serializable{
         this.end_cidade = end_cidade;
     }
 
-    public int getEnd_complemento() {
+    public String getEnd_complemento() {
         return end_complemento;
     }
 
-    public void setEnd_complemento(int end_complemento) {
+    public void setEnd_complemento(String end_complemento) {
         this.end_complemento = end_complemento;
     }
 
@@ -141,14 +144,6 @@ public class Funcionario implements Serializable{
 
     public void setEnd_rua(String end_rua) {
         this.end_rua = end_rua;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getIdentidade() {
@@ -190,6 +185,14 @@ public class Funcionario implements Serializable{
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
+    public String getTelefone1() {
+        return telefone1;
+    }
+
+    public void setTelefone1(String telefone1) {
+        this.telefone1 = telefone1;
+    }
 
     public String getTurno() {
         return turno;
@@ -199,5 +202,38 @@ public class Funcionario implements Serializable{
         this.turno = turno;
     }
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Funcionario)) {
+            return false;
+        }
+        Funcionario other = (Funcionario) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.edu.fasa.sistemaPousada.domainModel.Funcionario[ id=" + id + " ]";
+    }
     
 }

@@ -18,6 +18,7 @@ import javax.ejb.Stateless;
 public class PasseioDAO extends DAOGenerico <Passeio> implements IPasseioRepositorio{
 
     public PasseioDAO() {
+        super(Passeio.class);
     }
 
     @Override
@@ -27,6 +28,11 @@ public class PasseioDAO extends DAOGenerico <Passeio> implements IPasseioReposit
 
     @Override
     public List<Passeio> listarPorData(Date data) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Passeio> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

@@ -4,10 +4,7 @@
  */
 package br.edu.fasa.sistemaPousada.dataAccess;
 
-import br.edu.fasa.sistemaPousada.domainModel.IItemOSRepositorio;
-import br.edu.fasa.sistemaPousada.domainModel.ItemOS;
-import br.edu.fasa.sistemaPousada.domainModel.OS;
-import br.edu.fasa.sistemaPousada.domainModel.Servico;
+import br.edu.fasa.sistemaPousada.domainModel.*;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -20,6 +17,10 @@ import javax.ejb.Stateless;
 @Stateless
 public class ItemOSDAO extends DAOGenerico<ItemOS> implements IItemOSRepositorio{
 
+    public ItemOSDAO() {
+        super(Cliente.class);
+    }    
+    
     @Override
     public List<ItemOS> listarPorData(Date data) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -37,5 +38,10 @@ public class ItemOSDAO extends DAOGenerico<ItemOS> implements IItemOSRepositorio
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public List<ItemOS> listarTodos() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

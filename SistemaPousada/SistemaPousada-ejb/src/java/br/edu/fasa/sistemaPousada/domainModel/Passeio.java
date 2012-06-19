@@ -24,10 +24,15 @@ public class Passeio extends Servico implements Serializable {
     public Passeio() {
     }
 
-    public Passeio(Long id, String descricao, String tipo) {
-        super(id, descricao, tipo);
+        
+    public Passeio(float preco, Long id, String descricao, String tipo) {
+        super(descricao, tipo);
+        this.id = id;
+        this.preco = preco;
     }
-
+    
+    
+    
     public Passeio(Long id, float preco) {
         this.id = id;
         this.preco = preco;

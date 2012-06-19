@@ -30,18 +30,15 @@ public class Chale extends Servico implements Serializable {
     public Chale() {
     }
 
-    public Chale(Long id, String descricao, String tipo) {
-        super(id, descricao, tipo);
-    }
-
-    public Chale(Long id, float preco, String cor, boolean status, int capacidade) {
+    public Chale(Long id, float preco, String cor, boolean status, int capacidade, String descricao, String tipo) {
+        super(descricao, tipo);
         this.id = id;
         this.preco = preco;
         this.cor = cor;
         this.status = status;
         this.capacidade = capacidade;
     }
-
+    
     public int getCapacidade() {
         return capacidade;
     }

@@ -17,6 +17,7 @@ import javax.ejb.Stateless;
 public class FuncionarioDAO extends DAOGenerico<Funcionario> implements IFuncionarioRepositorio{
 
     public FuncionarioDAO() {
+        super(Funcionario.class);
     }
 
     @Override
@@ -31,6 +32,11 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> implements IFuncion
 
     @Override
     public List<Funcionario> listarPorTurno(String turno) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Funcionario> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

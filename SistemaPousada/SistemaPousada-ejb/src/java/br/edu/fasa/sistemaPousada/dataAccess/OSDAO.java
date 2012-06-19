@@ -18,6 +18,7 @@ import javax.ejb.Stateless;
 public class OSDAO extends DAOGenerico <OS> implements IOSRepositorio{
 
     public OSDAO() {
+        super(OS.class);
     }
 
     @Override
@@ -27,6 +28,11 @@ public class OSDAO extends DAOGenerico <OS> implements IOSRepositorio{
 
     @Override
     public List<OS> listarPorData(Date data) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<OS> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

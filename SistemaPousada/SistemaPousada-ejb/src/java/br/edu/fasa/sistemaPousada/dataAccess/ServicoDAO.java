@@ -17,10 +17,16 @@ import javax.ejb.Stateless;
 public class ServicoDAO extends DAOGenerico <Servico> implements IServicoRepositorio{
 
     public ServicoDAO() {
+        super(Servico.class);
     }
 
     @Override
     public List<Servico> listarPorDescricao(String descricao) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Servico> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

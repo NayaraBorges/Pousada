@@ -18,6 +18,7 @@ import javax.ejb.Stateless;
 public class EventoDAO extends DAOGenerico<Evento> implements IEventoRepositorio{
 
     public EventoDAO() {
+        super(Evento.class);
     }
 
     @Override
@@ -27,6 +28,11 @@ public class EventoDAO extends DAOGenerico<Evento> implements IEventoRepositorio
 
     @Override
     public List<Evento> listarPorData(Date data) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Evento> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

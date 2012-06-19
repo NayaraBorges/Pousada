@@ -17,10 +17,16 @@ import javax.ejb.Stateless;
 public class RefeicaoDAO extends DAOGenerico<Refeicao> implements IRefeicaoRepositorio{
 
     public RefeicaoDAO() {
+        super(Refeicao.class);
     }
 
     @Override
     public List<Refeicao> listarPorNome(String nome) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Refeicao> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

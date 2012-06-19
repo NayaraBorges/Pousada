@@ -13,32 +13,40 @@ import javax.persistence.PersistenceContext;
  *
  * @author NAYARA
  */
-public class DAOGenerico <T> implements IRepositorio <T>{
+public abstract class DAOGenerico <T> implements IRepositorio <T>{
 
-    public DAOGenerico() {
+    private Class type;
+    
+    @PersistenceContext(name="SistemaPousada-ejbPU")
+    protected EntityManager manager;
+    
+    protected EntityManager getManager() {
+        return manager;
     }
     
-    @PersistenceContext (name="SistemaPousada-ejbPU")
-    protected EntityManager manager;
-
+    public DAOGenerico(Class t) {
+        type = t;
+    }   
+    
     @Override
     public void salvar(T obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+         manager.persist(obj);
     }
 
     @Override
     public T abrir(long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (T)getManager().find(type, id);
     }
-
+    
+    
     @Override
     public void apagar(T obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       manager.remove(obj);
     }
 
     @Override
-    public List<T> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public abstract List<T> listarTodos();
+
+    
     
 }

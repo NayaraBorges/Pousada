@@ -16,6 +16,12 @@ import javax.ejb.Stateless;
 @Stateless
 public class ChaleDAO extends DAOGenerico<Chale> implements IChaleRepositorio{
 
+    public ChaleDAO() {
+        super(Chale.class);
+    }
+    
+    
+
     @Override
     public List<Chale> listarPorDescricao(String descricao) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -23,6 +29,11 @@ public class ChaleDAO extends DAOGenerico<Chale> implements IChaleRepositorio{
 
     @Override
     public List<Chale> listarPorStatus(boolean status) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Chale> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

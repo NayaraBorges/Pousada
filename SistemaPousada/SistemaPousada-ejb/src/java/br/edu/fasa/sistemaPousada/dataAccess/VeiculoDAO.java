@@ -17,6 +17,7 @@ import javax.ejb.Stateless;
 public class VeiculoDAO extends DAOGenerico <Veiculo> implements IVeiculoRepositorio{
 
     public VeiculoDAO() {
+        super(Veiculo.class);
     }
 
     @Override
@@ -31,6 +32,11 @@ public class VeiculoDAO extends DAOGenerico <Veiculo> implements IVeiculoReposit
 
     @Override
     public List<Veiculo> listarPorTipo(String tipo) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Veiculo> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

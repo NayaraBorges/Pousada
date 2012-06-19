@@ -27,8 +27,7 @@ public class Servico implements Serializable {
     public Servico() {
     }
 
-    public Servico(Long id, String descricao, String tipo) {
-        this.id = id;
+    public Servico( String descricao, String tipo) {
         this.descricao = descricao;
         this.tipo = tipo;
     }

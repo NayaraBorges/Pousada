@@ -24,15 +24,14 @@ public class Evento extends Servico implements Serializable {
     public Evento() {
     }
 
-    public Evento(Long id, String descricao, String tipo) {
-        super(id, descricao, tipo);
-    }
-
-    public Evento(Long id, float preco) {
+    public Evento(Long id, float preco, String descricao, String tipo) {
+        super(descricao, tipo);
         this.id = id;
         this.preco = preco;
     }
 
+    
+    
     public float getPreco() {
         return preco;
     }

@@ -17,10 +17,16 @@ import javax.ejb.Stateless;
 public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteRepositorio{
 
     public ClienteDAO() {
+        super(Cliente.class);
     }
 
     @Override
     public List<Cliente> listarPorNome(String nome) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Cliente> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

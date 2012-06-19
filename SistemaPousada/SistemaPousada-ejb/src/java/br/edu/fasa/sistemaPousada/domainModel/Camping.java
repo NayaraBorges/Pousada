@@ -30,18 +30,15 @@ public class Camping extends Servico implements Serializable {
     public Camping() {
     }
 
-    public Camping(Long id, String descricao, String tipo) {
-        super(id, descricao, tipo);
-    }
-
-    public Camping(Long id, String localizacao, float preco, int capacidade, boolean status) {
+    public Camping(Long id, String localizacao, float preco, int capacidade, boolean status, String descricao, String tipo) {
+        super(descricao, tipo);
         this.id = id;
         this.localizacao = localizacao;
         this.preco = preco;
         this.capacidade = capacidade;
         this.status = status;
     }
-
+    
     public int getCapacidade() {
         return capacidade;
     }

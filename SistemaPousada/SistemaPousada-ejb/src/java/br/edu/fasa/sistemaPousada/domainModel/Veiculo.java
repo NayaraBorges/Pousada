@@ -30,17 +30,14 @@ public class Veiculo extends Servico implements Serializable {
     private boolean status;
     @Column(name="ano", nullable=true)
     private int ano;
-    @Column(name="Tipo", nullable=false)
-    private String tipo;
+    @Column(name="Categoria", nullable=false)
+    private String categoria;
 
     public Veiculo() {
     }
 
-    public Veiculo(Long id, String descricao, String tipo) {
-        super(id, descricao, tipo);
-    }
-
-    public Veiculo(Long id, String nome, float preco, String placa, String cor, boolean status, int ano, String tipo) {
+    public Veiculo(Long id, String nome, float preco, String placa, String cor, boolean status, int ano, String tipo, String descricao, String categoria) {
+        super(descricao, tipo);
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -48,8 +45,10 @@ public class Veiculo extends Servico implements Serializable {
         this.cor = cor;
         this.status = status;
         this.ano = ano;
-        this.tipo = tipo;
+        this.categoria = categoria;
     }
+
+    
 
     public int getAno() {
         return ano;
@@ -99,12 +98,12 @@ public class Veiculo extends Servico implements Serializable {
         this.status = status;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
 

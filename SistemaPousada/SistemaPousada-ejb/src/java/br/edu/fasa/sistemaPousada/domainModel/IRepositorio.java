@@ -5,11 +5,13 @@
 package br.edu.fasa.sistemaPousada.domainModel;
 
 import java.util.List;
+import javax.ejb.Remote;
 
 /**
  *
  * @author NAYARA
  */
+@Remote
 public interface IRepositorio <T>{
     void salvar (T obj);
     T abrir (long id);

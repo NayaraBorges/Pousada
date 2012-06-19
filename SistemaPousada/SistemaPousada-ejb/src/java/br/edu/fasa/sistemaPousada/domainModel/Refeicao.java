@@ -26,11 +26,14 @@ public class Refeicao extends Servico implements Serializable {
     public Refeicao() {
     }
 
-    public Refeicao(Long id, String nome, float preco) {
+    public Refeicao(Long id, String nome, float preco, String descricao, String tipo) {
+        super(descricao, tipo);
         this.id = id;
         this.nome = nome;
         this.preco = preco;
     }
+
+    
 
     public String getNome() {
         return nome;

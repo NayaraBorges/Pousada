@@ -5,7 +5,6 @@
 package br.edu.fasa.sistemaPousada.domainModel;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -20,19 +19,19 @@ public class ItemOS implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date data;
     @Temporal(TemporalType.TIME)
-    private Time hora;
+    private Date hora;   
     @OneToOne
     private Servico servico;
-    @OneToMany
+    @ManyToOne
     private OS os;
 
     public ItemOS() {
     }
 
-    public ItemOS(Long id, Date data, Time hora, Servico servico, OS os) {
+    public ItemOS(Long id, Date data, Date hora, Servico servico, OS os) {
         this.id = id;
         this.data = data;
         this.hora = hora;
@@ -48,11 +47,11 @@ public class ItemOS implements Serializable {
         this.data = data;
     }
 
-    public Time getHora() {
+    public Date getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(Date hora) {
         this.hora = hora;
     }
 

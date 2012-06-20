@@ -24,7 +24,7 @@ public class OS implements Serializable {
     @ManyToMany(cascade=CascadeType.ALL)
     List<Servico> itens;
     @ManyToOne(cascade= CascadeType.MERGE, fetch= FetchType.EAGER)
-    @Column(name="Cliente")
+    @JoinColumn(name="Cliente")
     private Cliente cliente;
 
     public OS() {

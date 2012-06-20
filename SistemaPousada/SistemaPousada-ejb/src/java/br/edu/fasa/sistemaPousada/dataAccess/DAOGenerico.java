@@ -29,8 +29,14 @@ public abstract class DAOGenerico <T> implements IRepositorio <T>{
     }   
     
     @Override
-    public void salvar(T obj) {
-         manager.persist(obj);
+    public boolean salvar(T obj) {
+         try {
+            getManager().persist(obj);
+            return true;
+        } catch (Exception e) {  
+            e.printStackTrace();
+            return false;          
+        }
     }
 
     @Override
@@ -40,8 +46,14 @@ public abstract class DAOGenerico <T> implements IRepositorio <T>{
     
     
     @Override
-    public void apagar(T obj) {
-       manager.remove(obj);
+    public boolean apagar(T obj) {
+       try {
+            getManager().remove(obj);
+            return true;
+        } catch (Exception e) {  
+            e.printStackTrace();
+            return false;  
+        }
     }
 
     @Override

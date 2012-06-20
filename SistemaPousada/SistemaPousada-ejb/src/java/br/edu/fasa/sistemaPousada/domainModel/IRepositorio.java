@@ -13,8 +13,8 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IRepositorio <T>{
-    void salvar (T obj);
+    boolean salvar (T obj);
     T abrir (long id);
-    void apagar (T obj);
+    boolean apagar (T obj);
     List<T> listarTodos();
 }

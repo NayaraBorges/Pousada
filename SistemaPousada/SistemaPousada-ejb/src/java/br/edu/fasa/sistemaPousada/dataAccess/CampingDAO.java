@@ -21,6 +21,11 @@ public class CampingDAO extends DAOGenerico<Camping> implements ICampingReposito
     }
 
     @Override
+    public List<Camping> listarTodos() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public List<Camping> listarPorStatus(boolean status) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -35,9 +40,6 @@ public class CampingDAO extends DAOGenerico<Camping> implements ICampingReposito
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public List<Camping> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
     
 }

@@ -31,4 +31,6 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="Pousada1" object-type="user" pool-name="mysql_mysql_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="PousadaNew" object-type="user" pool-name="mysql_Pousada_rootPool_1"/>
+    <jdbc-resource enabled="true" jndi-name="PousadaNew2" object-type="user" pool-name="mysql_Pousada_rootPool_1"/>
 </resources>

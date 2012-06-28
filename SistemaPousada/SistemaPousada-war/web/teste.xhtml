@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Nome <h:inputText id="txtNome" value="#{cliente.nome}" /> 
+            Identidade <h:inputText id="txtIdentidade" value="#{cliente.identidade}"/>
+            Cpf <h:inputText id="txtCpf" value="#{cliente.cpf}"/>
+            Naturalidade <h:inputText id="txtNaturalidade" value="#{cliente.naturalidade}"/>
+            Email <h:inputText id="txtEmail" value="#{cliente.email}"/>
+            Telefone <h:inputText id="txtTelefone" value="#{cliente.telefone}"/>
+            Telefone1 <h:inputText id="txtTelefone1" value="#{cliente.telefone1}"/>
+            Rua <h:inputText id="txtRua" value="#{cliente.end_rua}"/>
+            Bairro <h:inputText id="txtBairro" value="#{cliente.end_bairro}"/>
+            Numero <h:inputText id="txtNumero" value="#{cliente.end_numero}"/>
+            Complemento <h:inputText id="txtComplemento" value="#{cliente.end_complemento}"/>
+            Cidade <h:inputText id="txtCidade" value="#{cliente.end_cidade}"/>
+            Cep <h:inputText id="txtCep" value="#{cliente.end_cep}"/>
+            Estado <h:inputText id="txtEstado" value="#{cliente.end_estado}"/>
+            Salvar <h:commandButton id="btCadastrar" value="Cadastrar" action="#{cliente.salvar()}"/>
+        </h:form>
+    </h:body>
+</html>
+

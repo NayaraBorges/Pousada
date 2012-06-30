@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>Pousada</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <ui:include src="cabecalho.xhtml"/>
+            <h2>Cadastramento de Clientes</h2><p/>
+            <h:panelGrid columns="2">
+            
+            <h:outputLabel value="Nome" /> 
+            <p:inputText id="txtNome" value="#{cliente.nome}" /> 
+            <h:outputLabel value="CPF" /> 
+            <p:inputText id="txtCpf" value="#{cliente.cpf}"/> 
+            <h:outputLabel value="Identidade" /> 
+            <p:inputText id="txtIdentidade" value="#{cliente.identidade}"/> 
+            <h:outputLabel value="Naturalidade" /> 
+            <p:inputText id="txtNaturalidade" value="#{cliente.naturalidade}"/> 
+            <h:outputLabel value="Email" /> 
+            <p:inputText id="txtEmail" value="#{cliente.email}"/> 
+            <h:outputLabel value="Telefone" /> 
+            <p:inputText id="txtTelefone" value="#{cliente.telefone}"/> 
+            <h:outputLabel value="Telefone1" />
+            <p:inputText id="txtTelefone1" value="#{cliente.telefone1}"/> 
+            <h:outputLabel value="Rua" /> 
+            <p:inputText id="txtRua" value="#{cliente.end_rua}"/>
+            <h:outputLabel value="Bairro" />  
+            <p:inputText id="txtBairro" value="#{cliente.end_bairro}"/> 
+            <h:outputLabel value="Número" /> 
+            <p:inputText id="txtNumero" value="#{cliente.end_numero}"/> 
+            <h:outputLabel value="Complemento" /> 
+            <p:inputText id="txtComplemento" value="#{cliente.end_complemento}"/> 
+            <h:outputLabel value="Cidade" /> 
+            <p:inputText id="txtCidade" value="#{cliente.end_cidade}"/> 
+            <h:outputLabel value="CEP" /> 
+            <p:inputText id="txtCep" value="#{cliente.end_cep}"/> 
+            <h:outputLabel value="Estado" /> 
+            <p:inputText id="txtEstado" value="#{cliente.end_estado}"/> 
+            <p:commandButton id="btCadastrar" value="Cadastrar"  onclick="confirm('Deseja realmente salvar?')" action="#{cliente.salvar}"/> <p/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

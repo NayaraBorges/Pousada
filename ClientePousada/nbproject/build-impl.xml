@@ -487,16 +487,16 @@ exists or setup the property manually. For example like this:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target depends="compile" if="is.server.weblogic" name="library-inclusion-in-archive">
-        <basename file="${file.reference.-glassfish}" property="manifest.file.reference.-glassfish"/>
+        <basename file="${file.reference.mysql-connector-java-5.1.20-bin.jar}" property="manifest.file.reference.mysql-connector-java-5.1.20-bin.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
             <attribute name="Extension-List" value="jar-1 "/>
-            <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.-glassfish}"/>
+            <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.mysql-connector-java-5.1.20-bin.jar}"/>
         </manifest>
     </target>
     <target depends="compile" if="dist.ear.dir" name="library-inclusion-in-manifest">
-        <copyfiles files="${file.reference.-glassfish}" manifestproperty="manifest.file.reference.-glassfish" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.mysql-connector-java-5.1.20-bin.jar}" manifestproperty="manifest.file.reference.mysql-connector-java-5.1.20-bin.jar" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.file.reference.-glassfish} lib/${manifest.file.reference.-glassfish} "/>
+            <attribute name="Class-Path" value="${manifest.file.reference.mysql-connector-java-5.1.20-bin.jar} lib/${manifest.file.reference.mysql-connector-java-5.1.20-bin.jar} "/>
         </manifest>
     </target>
     <target name="-copy-meta-inf">

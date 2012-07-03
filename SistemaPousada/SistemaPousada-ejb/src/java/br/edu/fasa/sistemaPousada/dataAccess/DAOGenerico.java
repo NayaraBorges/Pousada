@@ -48,7 +48,8 @@ public abstract class DAOGenerico <T> implements IRepositorio <T>{
     @Override
     public boolean apagar(T obj) {
        try {
-            getManager().remove(obj);
+           T x = (T)getManager().getReference(type, getID(obj));
+            getManager().remove(x);
             return true;
         } catch (Exception e) {  
             e.printStackTrace();
@@ -59,6 +60,7 @@ public abstract class DAOGenerico <T> implements IRepositorio <T>{
     @Override
     public abstract List<T> listarTodos();
 
+    public abstract Long getID(T obj);
     
     
 }

@@ -20,6 +20,11 @@ public class OSDAO extends DAOGenerico <OS> implements IOSRepositorio{
     public OSDAO() {
         super(OS.class);
     }
+    
+    @Override
+    public Long getID(OS obj){
+        return obj.getId();
+    }
 
     @Override
     public List<OS> listarPorStatus(boolean status) {

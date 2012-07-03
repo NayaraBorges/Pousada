@@ -8,6 +8,7 @@ import br.edu.fasa.sistemaPousada.domainModel.Camping;
 import br.edu.fasa.sistemaPousada.domainModel.ICampingRepositorio;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -22,24 +23,34 @@ public class CampingDAO extends DAOGenerico<Camping> implements ICampingReposito
 
     @Override
     public List<Camping> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Camping u");
+        return query.getResultList();
     }
 
     @Override
     public List<Camping> listarPorStatus(boolean status) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Camping u where u.status=:p1 order by u.descricao");
+        query.setParameter("p", status);
+        return query.getResultList();
     }
 
     @Override
     public List<Camping> listarPorLocalizacao(String localizacao) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Camping u where u.localizacao=:p1 order by u.descricao");
+        query.setParameter("p1", localizacao);
+        return query.getResultList();
     }
 
     @Override
     public List<Camping> listarPorCapacidade(int capacidade) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Camping u where u.capacidade=:p1 order by u.capacidade");
+        query.setParameter("p1", capacidade);
+        return query.getResultList();
     }
 
-    
+    @Override
+    public Long getID(Camping obj){
+        return obj.getId();
+    }
     
 }

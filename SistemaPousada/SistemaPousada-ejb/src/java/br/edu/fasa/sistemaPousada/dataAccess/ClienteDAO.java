@@ -4,6 +4,7 @@
  */
 package br.edu.fasa.sistemaPousada.dataAccess;
 
+import br.edu.fasa.sistemaPousada.domainModel.Chale;
 import br.edu.fasa.sistemaPousada.domainModel.Cliente;
 import br.edu.fasa.sistemaPousada.domainModel.IClienteRepositorio;
 import java.util.List;
@@ -19,6 +20,11 @@ public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteReposito
     public ClienteDAO() {
         super(Cliente.class);
     }
+    
+    @Override
+    public Long getID(Cliente obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Cliente> listarPorNome(String nome) {
@@ -29,5 +35,7 @@ public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteReposito
     public List<Cliente> listarTodos() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    
     
 }

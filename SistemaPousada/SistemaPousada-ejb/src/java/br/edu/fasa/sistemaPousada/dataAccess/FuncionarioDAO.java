@@ -19,6 +19,11 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> implements IFuncion
     public FuncionarioDAO() {
         super(Funcionario.class);
     }
+    
+    @Override
+    public Long getID(Funcionario obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Funcionario> listarPorNome(String nome) {

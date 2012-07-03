@@ -19,6 +19,11 @@ public class VeiculoDAO extends DAOGenerico <Veiculo> implements IVeiculoReposit
     public VeiculoDAO() {
         super(Veiculo.class);
     }
+    
+    @Override
+    public Long getID(Veiculo obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Veiculo> listarPorNome(String nome) {

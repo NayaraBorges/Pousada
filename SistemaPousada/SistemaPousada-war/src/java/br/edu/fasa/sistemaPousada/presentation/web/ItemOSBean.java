@@ -37,8 +37,6 @@ public class ItemOSBean implements Serializable {
         ios.setOs(os);
         ejb.salvar(ios);
     }
-
-
     /**
      * Creates a new instance of ItemOSBean
      */

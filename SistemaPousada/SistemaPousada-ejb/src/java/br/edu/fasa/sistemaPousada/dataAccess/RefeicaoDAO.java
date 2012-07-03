@@ -19,6 +19,11 @@ public class RefeicaoDAO extends DAOGenerico<Refeicao> implements IRefeicaoRepos
     public RefeicaoDAO() {
         super(Refeicao.class);
     }
+    
+    @Override
+    public Long getID(Refeicao obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Refeicao> listarPorNome(String nome) {

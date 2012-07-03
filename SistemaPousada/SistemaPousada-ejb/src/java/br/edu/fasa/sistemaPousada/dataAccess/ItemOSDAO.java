@@ -19,7 +19,12 @@ public class ItemOSDAO extends DAOGenerico<ItemOS> implements IItemOSRepositorio
 
     public ItemOSDAO() {
         super(Cliente.class);
-    }    
+    }   
+    
+    @Override
+    public Long getID(ItemOS obj){
+        return obj.getId();
+    }
     
     @Override
     public List<ItemOS> listarPorData(Date data) {

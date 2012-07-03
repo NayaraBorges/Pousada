@@ -19,6 +19,11 @@ public class ServicoDAO extends DAOGenerico <Servico> implements IServicoReposit
     public ServicoDAO() {
         super(Servico.class);
     }
+    
+    @Override
+    public Long getID(Servico obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Servico> listarPorDescricao(String descricao) {

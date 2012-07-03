@@ -26,9 +26,14 @@
             <p:inputText id="txtTipo" value="#{camping.tipo}"/> 
             <h:outputText value="Descricao" /> 
             <p:inputText id="txtDescricao" value="#{camping.descricao}"/> 
-            <p:commandButton id="btCadastrar" value="Cadastrar" onclick="confirm('Deseja realmente salvar?')" action="#{camping.salvar}"/> <p/>
+            <p:commandButton id="btCadastrar" value="Cadastrar" onclick="msgSalvar.show()" /> <p/>
             
                 </h:panelGrid>
+            
+            <p:confirmDialog message="Deseja realmente salvar?" modal="true" widgetVar="msgSalvar">
+                <p:commandButton id="salvar" value="Sim" action="#{camping.salvar}" oncomplete="msgSalvar.hide()" />
+                <p:commandButton id="cancelar" value="Não" oncomplete="msgSalvar.hide()" />
+            </p:confirmDialog>
         </h:form>
     </h:body>
 </html>

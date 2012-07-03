@@ -20,7 +20,10 @@ public class ChaleDAO extends DAOGenerico<Chale> implements IChaleRepositorio{
         super(Chale.class);
     }
     
-    
+    @Override
+    public Long getID(Chale obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Chale> listarPorDescricao(String descricao) {

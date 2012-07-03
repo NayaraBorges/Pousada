@@ -20,6 +20,11 @@ public class EventoDAO extends DAOGenerico<Evento> implements IEventoRepositorio
     public EventoDAO() {
         super(Evento.class);
     }
+    
+    @Override
+    public Long getID(Evento obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Evento> listarPorDescricao(String descricao) {

@@ -20,6 +20,11 @@ public class PasseioDAO extends DAOGenerico <Passeio> implements IPasseioReposit
     public PasseioDAO() {
         super(Passeio.class);
     }
+    
+    @Override
+    public Long getID(Passeio obj){
+        return obj.getId();
+    }
 
     @Override
     public List<Passeio> listarPorDescricao(String descricao) {

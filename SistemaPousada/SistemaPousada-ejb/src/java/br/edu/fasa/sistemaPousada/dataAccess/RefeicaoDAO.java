@@ -8,6 +8,7 @@ import br.edu.fasa.sistemaPousada.domainModel.IRefeicaoRepositorio;
 import br.edu.fasa.sistemaPousada.domainModel.Refeicao;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,12 +28,15 @@ public class RefeicaoDAO extends DAOGenerico<Refeicao> implements IRefeicaoRepos
 
     @Override
     public List<Refeicao> listarPorNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Refeicao u where u.nome=:p order by u.nome");
+        query.setParameter("p", nome);
+        return query.getResultList();
     }
 
     @Override
     public List<Refeicao> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Refeicao u");
+        return query.getResultList();
     }
     
 }

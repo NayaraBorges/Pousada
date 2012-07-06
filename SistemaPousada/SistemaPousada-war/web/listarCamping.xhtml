@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Pousada</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <ui:include src="cabecalho.xhtml"/>
+            <h2>Lista das Áreas de Camping</h2><p/>
+            <p:dataTable value="#{camping.listagem}" var="item">
+                <f:facet name="header">
+                    <h:outputText value="Listagem das áreas de camping"/>
+                </f:facet>
+                <p:column filterBy="#{item.id}" sortBy="#{item.id}">
+                    <f:facet name="id">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column filterBy="#{item.preco}" sortBy="#{item.preco}">
+                    <f:facet name="nome">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{item.preco}"/>
+                </p:column>
+                <p:column>
+                    <h:panelGrid columns="2">
+                        <h:commandLink value="Editar" action="#{camping.editar()}">
+                            <f:setPropertyActionListener target="#{camping.id}" value="#{item.id}" />
+                        </h:commandLink>
+                        <h:commandLink value="Apagar" action="#{camping.apagar()}" onclick="return confirm('Deseja realmente apagar?');">
+                            <f:setPropertyActionListener target="#{camping.id}" value="#{item.id}" />
+                        </h:commandLink>
+                    </h:panelGrid>
+
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

@@ -12,6 +12,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 
 /**
@@ -24,19 +25,71 @@ public class ItemOSBean implements Serializable {
     @EJB
     IItemOSRepositorio ejb;
     
+    int id;
     Date data;
     Date hora;   
     Servico servico;
     OS os;
     
-    public void salvar(){
-        ItemOS ios = new ItemOS();
-        ios.setData(data);
-        ios.setHora(hora);
-        ios.setServico(servico);
-        ios.setOs(os);
-        ejb.salvar(ios);
+    List<ItemOS> listagem;
+    ItemOS itemOs;
+    
+    public void abrir(){
+        if(id > 0)
+            setItemOs(ejb.abrir(id));
     }
+    
+    public String editar(){
+        abrir();
+        return "salvarItemOs.xhtml";
+    }
+    
+    public String apagar(){
+        abrir();
+        ejb.apagar(itemOs);
+        listagem=null;
+        return "listarItemOs.xhtml";
+    }
+    
+    public void salvar(){
+        abrir();
+        
+        if(itemOs == null)
+            itemOs = new ItemOS();
+        
+        itemOs.setData(data);
+        itemOs.setHora(hora);
+        itemOs.setServico(servico);
+        itemOs.setOs(os);
+        
+        ejb.salvar(itemOs);
+    }
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ItemOS getItemOs() {
+        return itemOs;
+    }
+
+    public void setItemOs(ItemOS itemOs) {
+        this.itemOs = itemOs;
+    }
+
+    public List<ItemOS> getListagem() {
+        return listagem;
+    }
+
+    public void setListagem(List<ItemOS> listagem) {
+        this.listagem = listagem;
+    }
+    
     /**
      * Creates a new instance of ItemOSBean
      */

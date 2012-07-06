@@ -8,6 +8,7 @@ import br.edu.fasa.sistemaPousada.domainModel.IServicoRepositorio;
 import br.edu.fasa.sistemaPousada.domainModel.Servico;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,12 +28,15 @@ public class ServicoDAO extends DAOGenerico <Servico> implements IServicoReposit
 
     @Override
     public List<Servico> listarPorDescricao(String descricao) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Servico u where u.descricao=:p order by u.descricao");
+        query.setParameter("p", descricao);
+        return query.getResultList();
     }
 
     @Override
     public List<Servico> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Servico u");
+        return query.getResultList();
     }
     
 }

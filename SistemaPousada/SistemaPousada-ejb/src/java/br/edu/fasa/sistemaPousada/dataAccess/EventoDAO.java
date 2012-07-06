@@ -9,6 +9,7 @@ import br.edu.fasa.sistemaPousada.domainModel.IEventoRepositorio;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,17 +29,22 @@ public class EventoDAO extends DAOGenerico<Evento> implements IEventoRepositorio
 
     @Override
     public List<Evento> listarPorDescricao(String descricao) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Evento u where u.descricao=:p order by u.descricao");
+        query.setParameter("p", descricao);
+        return query.getResultList();
     }
 
     @Override
     public List<Evento> listarPorData(Date data) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Evento u where u.data=:p order by u.data");
+        query.setParameter("p", data);
+        return query.getResultList();
     }
 
     @Override
     public List<Evento> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Evento u");
+        return query.getResultList();
     }
     
 }

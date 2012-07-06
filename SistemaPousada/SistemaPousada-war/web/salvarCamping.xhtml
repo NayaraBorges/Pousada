@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.prime.com.tr/ui"
-      
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Pousada</title>
@@ -13,25 +12,25 @@
             <ui:include src="cabecalho.xhtml"/>
             <h2>Cadastramento de Áreas de Camping</h2><p/>
             <h:panelGrid columns="2">
-            
-            <h:outputLabel value="Capacidade" /> 
-            <p:inputText id="txtCapacidade" value="#{camping.capacidade}"/>
-            <h:outputText value="Localização"/>  
-            <p:inputText id="txtLocalizacao" value="#{camping.localizacao}" />
-            <h:outputText value="Preço" /> 
-            <p:inputText id="txtPreco" value="#{camping.preco}"/>
-            <h:outputText value="Status" /> 
-            <p:inputText id="txtStatus" value="#{camping.status}"/> 
-            <h:outputText value="Tipo" /> 
-            <p:inputText id="txtTipo" value="#{camping.tipo}"/> 
-            <h:outputText value="Descricao" /> 
-            <p:inputText id="txtDescricao" value="#{camping.descricao}"/> 
-            <p:commandButton id="btCadastrar" value="Cadastrar" onclick="msgSalvar.show()" /> <p/>
-            
-                </h:panelGrid>
-            
+
+                <h:outputLabel value="Capacidade" /> 
+                <p:inputText id="txtCapacidade" value="#{camping.capacidade}"/>
+                <h:outputText value="Localização"/>  
+                <p:inputText id="txtLocalizacao" value="#{camping.localizacao}" />
+                <h:outputText value="Preço" /> 
+                <p:inputText id="txtPreco" value="#{camping.preco}"/>
+                <h:outputText value="Status" /> 
+                <p:inputText id="txtStatus" value="#{camping.status}"/> 
+                <h:outputText value="Tipo" /> 
+                <p:inputText id="txtTipo" value="#{camping.tipo}"/> 
+                <h:outputText value="Descricao" /> 
+                <p:inputText id="txtDescricao" value="#{camping.descricao}"/> 
+                <p:commandButton id="btCadastrar" value="Cadastrar" onclick="msgSalvar.show()" /> <p/>
+
+            </h:panelGrid>
+
             <p:confirmDialog message="Deseja realmente salvar?" modal="true" widgetVar="msgSalvar">
-                <p:commandButton id="salvar" value="Sim" action="#{camping.salvar}" oncomplete="msgSalvar.hide()" />
+                <p:commandButton id="salvar" value="Sim" ajax="false" action="#{camping.salvar()}" oncomplete="msgSalvar.hide()" />
                 <p:commandButton id="cancelar" value="Não" oncomplete="msgSalvar.hide()" />
             </p:confirmDialog>
         </h:form>

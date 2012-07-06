@@ -29,14 +29,14 @@ public class CampingDAO extends DAOGenerico<Camping> implements ICampingReposito
 
     @Override
     public List<Camping> listarPorStatus(boolean status) {
-        Query query=(Query) manager.createQuery("select u from Camping u where u.status=:p1 order by u.descricao");
+        Query query=(Query) manager.createQuery("select u from Camping u where u.status=:p order by u.status");
         query.setParameter("p", status);
         return query.getResultList();
     }
 
     @Override
     public List<Camping> listarPorLocalizacao(String localizacao) {
-        Query query=(Query) manager.createQuery("select u from Camping u where u.localizacao=:p1 order by u.descricao");
+        Query query=(Query) manager.createQuery("select u from Camping u where u.localizacao=:p1 order by u.localizacao");
         query.setParameter("p1", localizacao);
         return query.getResultList();
     }

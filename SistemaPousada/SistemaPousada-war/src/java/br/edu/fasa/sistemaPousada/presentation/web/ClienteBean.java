@@ -22,33 +22,10 @@ public class ClienteBean implements Serializable {
     @EJB
     IClienteRepositorio ejb;
     
+    List<Cliente> listagem;
     Cliente cliente;
     
-    String id;
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-        this.id = cliente.getId().toString();
-        this.nome = cliente.getNome();
-        
-    }
-    
-    List<Cliente> listagem;
-
-    public List<Cliente> getListagem() {
-        return listagem;
-    }
-
-    public void setListagem(List<Cliente> listagem) {
-        this.listagem = listagem;
-    }
-    
-    
-    
+    int id;
     String nome;
     String cpf;
     String identidade;
@@ -63,28 +40,73 @@ public class ClienteBean implements Serializable {
     String end_cidade;
     String end_cep;
     String end_estado;
-
-    public void salvar(){
-        Cliente cli = new Cliente();
-        cli.setNome(nome);
-        cli.setCpf(cpf);
-        cli.setIdentidade(identidade);
-        cli.setNaturalidade(naturalidade);
-        cli.setEmail(email);
-        cli.setTelefone(telefone);
-        cli.setTelefone1(telefone1);
-        cli.setEnd_rua(end_rua);
-        cli.setEnd_bairro(end_bairro);
-        cli.setEnd_numero(end_numero);
-        cli.setEnd_complemento(end_complemento);
-        cli.setEnd_cidade(end_cidade);
-        cli.setEnd_cep(end_cep);
-        cli.setEnd_estado(end_estado);
-        ejb.salvar(cli);
+    
+    public void abrir(){
+        if(id > 0)
+            setCliente(ejb.abrir(id));
     }
     
+    public String editar(){
+        abrir();
+        return "salvarCliente.xhtml";
+    }
+    
+    public String apagar(){
+        abrir();
+        ejb.apagar(cliente);
+        listagem=null;
+        return "listarCliente.xhtml";
+    }
+    
+    public void salvar(){
+        abrir();
+        
+        if(cliente == null)
+            cliente = new Cliente();
+        
+        cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        cliente.setIdentidade(identidade);
+        cliente.setNaturalidade(naturalidade);
+        cliente.setEmail(email);
+        cliente.setTelefone(telefone);
+        cliente.setTelefone1(telefone1);
+        cliente.setEnd_rua(end_rua);
+        cliente.setEnd_bairro(end_bairro);
+        cliente.setEnd_numero(end_numero);
+        cliente.setEnd_complemento(end_complemento);
+        cliente.setEnd_cidade(end_cidade);
+        cliente.setEnd_cep(end_cep);
+        cliente.setEnd_estado(end_estado);
+        
+        ejb.salvar(cliente);
+    }
     
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Cliente> getListagem() {
+        return listagem;
+    }
+
+    public void setListagem(List<Cliente> listagem) {
+        this.listagem = listagem;
+    }
+    
     public String getCpf() {
         return cpf;
     }

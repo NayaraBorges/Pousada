@@ -10,21 +10,22 @@
     <h:body>
         <h:form>
             <ui:include src="cabecalho.xhtml"/>
-            <h2>Cadastramento de Passeios</h2><p/>
+            <h2>Cadastramento de ItemOs</h2><p/>
             <h:panelGrid columns="2">
-
-                <h:outputLabel value="Preço" /> 
-                <p:inputText id="txtPreco" value="#{passeio.preco}"/> 
-                <h:outputLabel value="Tipo" /> 
-                <p:inputText id="txtTipo" value="#{passeio.tipo}"/> 
-                <h:outputLabel value="Descrição" /> 
-                <p:inputText id="txtDescricao" value="#{passeio.descricao}"/> 
-                <p:commandButton id="btCadastrar" value="Cadastrar"  onclick="msgSalvar.show()" /> <p/>
+                <h:outputLabel value="Data" /> 
+                <p:inputText id="txtData" value="#{itemOs.data}"/>
+                <h:outputText value="Hora"/>  
+                <p:inputText id="txtHora" value="#{itemOs.hora}"/>
+                <h:outputText value="Serviço" /> 
+                <p:inputText id="txtServico" value="#{itemOs.servico}"/>
+                <h:outputText value="Ordem de Serviço" /> 
+                <p:inputText id="txtOS" value="#{itemOs.os}"/> 
+                <p:commandButton id="btCadastrar" value="Cadastrar" onclick="msgSalvar.show()" /> <p/>
 
             </h:panelGrid>
 
             <p:confirmDialog message="Deseja realmente salvar?" modal="true" widgetVar="msgSalvar">
-                <p:commandButton id="salvar" value="Sim" action="#{passeio.salvar}" oncomplete="msgSalvar.hide()" />
+                <p:commandButton id="salvar" value="Sim" action="#{itemOs.salvar}" oncomplete="msgSalvar.hide()" />
                 <p:commandButton id="cancelar" value="Não" oncomplete="msgSalvar.hide()" />
             </p:confirmDialog>
         </h:form>

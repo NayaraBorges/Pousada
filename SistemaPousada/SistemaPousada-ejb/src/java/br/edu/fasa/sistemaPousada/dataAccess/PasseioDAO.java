@@ -9,6 +9,7 @@ import br.edu.fasa.sistemaPousada.domainModel.Passeio;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,17 +29,22 @@ public class PasseioDAO extends DAOGenerico <Passeio> implements IPasseioReposit
 
     @Override
     public List<Passeio> listarPorDescricao(String descricao) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Passeio u where u.descricao=:p order by u.descricao");
+        query.setParameter("p", descricao);
+        return query.getResultList();
     }
 
     @Override
     public List<Passeio> listarPorData(Date data) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Passeio u where u.data=:p order by u.data");
+        query.setParameter("p", data);
+        return query.getResultList();
     }
 
     @Override
     public List<Passeio> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Passeio u");
+        return query.getResultList();
     }
     
 }

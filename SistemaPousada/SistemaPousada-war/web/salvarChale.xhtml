@@ -2,7 +2,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      
       xmlns:p="http://primefaces.prime.com.tr/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
@@ -13,22 +12,28 @@
             <ui:include src="cabecalho.xhtml"/>
             <h2>Cadastramento de Chalés</h2><p/>
             <h:panelGrid columns="2">
-            
-            <h:outputLabel value="Capacidade" />
-            <p:inputText id="txtCapacidade" value="#{chale.capacidade}" /> 
-            <h:outputLabel value="Cor" />
-            <p:inputText id="txtCor" value="#{chale.cor}"/> 
-            <h:outputLabel value="Preço" />
-            <p:inputText id="txtPreco" value="#{chale.preco}"/> 
-            <h:outputLabel value="Status" />
-            <p:inputText id="txtStatus" value="#{chale.status}"/> 
-            <h:outputLabel value="Tipo" />
-            <p:inputText id="txtTipo" value="#{chale.tipo}"/> 
-            <h:outputLabel value="Descrição" />
-            <p:inputText id="txtDescricao" value="#{chale.descricao}"/> 
-            <p:commandButton id="btCadastrar" value="Cadastrar"  onclick="confirm('Deseja realmente salvar?')" action="#{chale.salvar}"/> <p/>
-            
+
+                <h:outputLabel value="Capacidade" />
+                <p:inputText id="txtCapacidade" value="#{chale.capacidade}" /> 
+                <h:outputLabel value="Cor" />
+                <p:inputText id="txtCor" value="#{chale.cor}"/> 
+                <h:outputLabel value="Preço" />
+                <p:inputText id="txtPreco" value="#{chale.preco}"/> 
+                <h:outputLabel value="Status" />
+                <p:inputText id="txtStatus" value="#{chale.status}"/> 
+                <h:outputLabel value="Tipo" />
+                <p:inputText id="txtTipo" value="#{chale.tipo}"/> 
+                <h:outputLabel value="Descrição" />
+                <p:inputText id="txtDescricao" value="#{chale.descricao}"/> 
+                <p:commandButton id="btCadastrar" value="Cadastrar" onclick="msgSalvar.show()" /> <p/>
+
             </h:panelGrid>
+            
+            <p:confirmDialog message="Deseja realmente salvar?" modal="true" widgetVar="msgSalvar">
+                <p:commandButton id="salvar" value="Sim" action="#{chale.salvar}" oncomplete="msgSalvar.hide()" />
+                <p:commandButton id="cancelar" value="Não" oncomplete="msgSalvar.hide()" />
+            </p:confirmDialog>
+            
         </h:form>
     </h:body>
 </html>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.prime.com.tr/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Pousada</title>
     </h:head>
@@ -11,16 +12,26 @@
         <h:form>
             <ui:include src="cabecalho.xhtml"/>
             <h2>Cadastramento de Eventos</h2><p/>
-            <h:panelGrid columns="2">
-            
-            <h:outputLabel value="Preço" /> 
-            <p:inputText id="txtPreco" value="#{evento.preco}"/> 
-            <h:outputLabel value="Tipo" /> 
-            <p:inputText id="txtTipo" value="#{evento.tipo}"/> 
-            <h:outputLabel value="Descrição" /> 
-            <p:inputText id="txtDescricao" value="#{evento.descricao}"/> 
-            <p:commandButton id="btCadastrar" value="Cadastrar" onclick="confirm('Deseja realmente salvar?')" action="#{evento.salvar()}"/> <p/>
+            <p:messages id="mensagens" />
+            <h:panelGrid id="painel" columns="2">
+
+                <h:outputLabel value="Preço" /> 
+                <p:inputText id="txtPreco"  value="#{evento.preco}">
+                    <f:convertNumber locale="pt_BR" />
+                </p:inputText>
+
+                <h:outputLabel value="Tipo*" /> 
+                <p:inputText id="txtTipo" value="#{evento.tipo}" required="true" requiredMessage="O preenchimento do campo preço é obrigatório" /> 
+                <h:outputLabel value="Descrição" /> 
+                <p:inputText id="txtDescricao" value="#{evento.descricao}"/> 
+                <p:commandButton id="btCadastrar" value="Cadastrar" onclick="msgSalvar.show()" />
             </h:panelGrid>
+
+            <p:confirmDialog message="Deseja realmente salvar?" modal="true" widgetVar="msgSalvar">
+                <p:commandButton id="salvar" value="Sim" action="#{evento.salvar()}" 
+                                 oncomplete="msgSalvar.hide()" update="mensagens,painel" />
+                <p:commandButton id="cancelar" value="Não" onclick="msgSalvar.hide()" />
+            </p:confirmDialog>
         </h:form>
     </h:body>
 </html>

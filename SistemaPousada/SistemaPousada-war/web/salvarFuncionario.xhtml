@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.prime.com.tr/ui"
-      
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Pousada</title>
@@ -13,41 +12,47 @@
             <ui:include src="cabecalho.xhtml"/>
             <h2>Cadastramento de Funcionarios</h2>
             <h:panelGrid columns="2">
-            
-            <h:outputLabel value="Nome" /> 
-            <p:inputText id="txtNome" value="#{funcionario.nome}" /> 
-            <h:outputText value="CPF"/>  
-            <p:inputText id="txtCpf" value="#{funcionario.cpf}"/> 
-            <h:outputText value="Identidade"/>  
-            <p:inputText id="txtIdentidade" value="#{funcionario.identidade}"/> 
-            <h:outputText value="Naturalidade"/>  
-            <p:inputText id="txtNaturalidade" value="#{funcionario.naturalidade}"/> 
-            <h:outputText value="Email"/>  
-            <p:inputText id="txtEmail" value="#{funcionario.email}"/> 
-            <h:outputText value="Telefone"/>  
-            <p:inputText id="txtTelefone" value="#{funcionario.telefone}"/> 
-            <h:outputText value="Telefone1"/>  
-            <p:inputText id="txtTelefone1" value="#{funcionario.telefone1}"/> 
-            <h:outputText value="Rua"/>  
-            <p:inputText id="txtRua" value="#{funcionario.end_rua}"/>
-            <h:outputText value="Bairro"/>  
-            <p:inputText id="txtBairro" value="#{funcionario.end_bairro}"/> 
-            <h:outputText value="Número"/>  
-            <p:inputText id="txtNumero" value="#{funcionario.end_numero}"/> 
-            <h:outputText value="Complemento"/>  
-            <p:inputText id="txtComplemento" value="#{funcionario.end_complemento}"/> 
-            <h:outputText value="Cidade"/>  
-            <p:inputText id="txtCidade" value="#{funcionario.end_cidade}"/> 
-            <h:outputText value="CEP"/>  
-            <p:inputText id="txtCep" value="#{funcionario.end_cep}"/> 
-            <h:outputText value="Estado"/>  
-            <p:inputText id="txtEstado" value="#{funcionario.end_estado}"/>
-            <h:outputText value="Turno"/>  
-            <p:inputText id="txtTurno" value="#{funcionario.turno}"/> 
-            <h:outputText value="Setor"/>  
-            <p:inputText id="txtSetor" value="#{funcionario.setor}"/> 
-            <p:commandButton id="btCadastrar" value="Cadastrar"  onclick="confirm('Deseja realmente salvar?')" action="#{funcionario.salvar}"/> <p/>
-             </h:panelGrid>
+
+                <h:outputLabel value="Nome" /> 
+                <p:inputText id="txtNome" value="#{funcionario.nome}" /> 
+                <h:outputText value="CPF"/>  
+                <p:inputText id="txtCpf" value="#{funcionario.cpf}"/> 
+                <h:outputText value="Identidade"/>  
+                <p:inputText id="txtIdentidade" value="#{funcionario.identidade}"/> 
+                <h:outputText value="Naturalidade"/>  
+                <p:inputText id="txtNaturalidade" value="#{funcionario.naturalidade}"/> 
+                <h:outputText value="Email"/>  
+                <p:inputText id="txtEmail" value="#{funcionario.email}"/> 
+                <h:outputText value="Telefone"/>  
+                <p:inputText id="txtTelefone" value="#{funcionario.telefone}"/> 
+                <h:outputText value="Telefone1"/>  
+                <p:inputText id="txtTelefone1" value="#{funcionario.telefone1}"/> 
+                <h:outputText value="Rua"/>  
+                <p:inputText id="txtRua" value="#{funcionario.end_rua}"/>
+                <h:outputText value="Bairro"/>  
+                <p:inputText id="txtBairro" value="#{funcionario.end_bairro}"/> 
+                <h:outputText value="Número"/>  
+                <p:inputText id="txtNumero" value="#{funcionario.end_numero}"/> 
+                <h:outputText value="Complemento"/>  
+                <p:inputText id="txtComplemento" value="#{funcionario.end_complemento}"/> 
+                <h:outputText value="Cidade"/>  
+                <p:inputText id="txtCidade" value="#{funcionario.end_cidade}"/> 
+                <h:outputText value="CEP"/>  
+                <p:inputText id="txtCep" value="#{funcionario.end_cep}"/> 
+                <h:outputText value="Estado"/>  
+                <p:inputText id="txtEstado" value="#{funcionario.end_estado}"/>
+                <h:outputText value="Turno"/>  
+                <p:inputText id="txtTurno" value="#{funcionario.turno}"/> 
+                <h:outputText value="Setor"/>  
+                <p:inputText id="txtSetor" value="#{funcionario.setor}"/> 
+                <p:commandButton id="btCadastrar" value="Cadastrar"  onclick="msgSalvar.show()" /> <p/>
+
+            </h:panelGrid>
+
+            <p:confirmDialog message="Deseja realmente salvar?" modal="true" widgetVar="msgSalvar">
+                <p:commandButton id="salvar" value="Sim" action="#{funcionario.salvar}" oncomplete="msgSalvar.hide()" />
+                <p:commandButton id="cancelar" value="Não" oncomplete="msgSalvar.hide()" />
+            </p:confirmDialog>
         </h:form>
     </h:body>
 </html>

@@ -8,6 +8,7 @@ import br.edu.fasa.sistemaPousada.domainModel.Chale;
 import br.edu.fasa.sistemaPousada.domainModel.IChaleRepositorio;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,17 +28,22 @@ public class ChaleDAO extends DAOGenerico<Chale> implements IChaleRepositorio{
 
     @Override
     public List<Chale> listarPorDescricao(String descricao) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Chale u where u.descricao=:p order by u.descricao");
+        query.setParameter("p", descricao);
+        return query.getResultList();
     }
 
     @Override
     public List<Chale> listarPorStatus(boolean status) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Chale u where u.status=:p1 order by u.status");
+        query.setParameter("p", status);
+        return query.getResultList();
     }
 
     @Override
     public List<Chale> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Chale u");
+        return query.getResultList();
     }
     
 }

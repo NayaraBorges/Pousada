@@ -9,6 +9,7 @@ import br.edu.fasa.sistemaPousada.domainModel.IFuncionarioRepositorio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 
 /**
@@ -21,6 +22,7 @@ public class FuncionarioBean implements Serializable {
     @EJB
     IFuncionarioRepositorio ejb;
     
+    int id;
     String nome;
     String cpf;
     String identidade;
@@ -38,25 +40,50 @@ public class FuncionarioBean implements Serializable {
     String turno;
     String setor;
     
+    List<Funcionario> listagem;
+    Funcionario funcionario;
+    
+    public void abrir(){
+        if(id > 0)
+            setFuncionario(ejb.abrir(id));
+    }
+    
+    public String editar(){
+        abrir();
+        return "salvarFuncionario.xhtml";
+    }
+    
+    public String apagar(){
+        abrir();
+        ejb.apagar(funcionario);
+        listagem=null;
+        return "listarFuncionario.xhtml";
+    }
+    
     public void salvar(){
-        Funcionario fun = new Funcionario();
-        fun.setNome(nome);
-        fun.setCpf(cpf);
-        fun.setIdentidade(identidade);
-        fun.setNaturalidade(naturalidade);
-        fun.setEmail(email);
-        fun.setTelefone(telefone);
-        fun.setTelefone1(telefone1);
-        fun.setEnd_rua(end_rua);
-        fun.setEnd_bairro(end_bairro);
-        fun.setEnd_numero(end_numero);
-        fun.setEnd_complemento(end_complemento);
-        fun.setEnd_cidade(end_cidade);
-        fun.setEnd_cep(end_cep);
-        fun.setEnd_estado(end_estado);
-        fun.setTurno(turno);
-        fun.setSetor(setor);
-        ejb.salvar(fun);
+        abrir();
+        
+        if(funcionario == null)
+            funcionario = new Funcionario();
+        
+        funcionario.setNome(nome);
+        funcionario.setCpf(cpf);
+        funcionario.setIdentidade(identidade);
+        funcionario.setNaturalidade(naturalidade);
+        funcionario.setEmail(email);
+        funcionario.setTelefone(telefone);
+        funcionario.setTelefone1(telefone1);
+        funcionario.setEnd_rua(end_rua);
+        funcionario.setEnd_bairro(end_bairro);
+        funcionario.setEnd_numero(end_numero);
+        funcionario.setEnd_complemento(end_complemento);
+        funcionario.setEnd_cidade(end_cidade);
+        funcionario.setEnd_cep(end_cep);
+        funcionario.setEnd_estado(end_estado);
+        funcionario.setTurno(turno);
+        funcionario.setSetor(setor);
+   
+        ejb.salvar(funcionario);
     }
 
     /**
@@ -65,6 +92,31 @@ public class FuncionarioBean implements Serializable {
     public FuncionarioBean() {
     }
 
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Funcionario> getListagem() {
+        return listagem;
+    }
+
+    public void setListagem(List<Funcionario> listagem) {
+        this.listagem = listagem;
+    }
+
+    
     public String getCpf() {
         return cpf;
     }

@@ -9,6 +9,7 @@ import br.edu.fasa.sistemaPousada.domainModel.Cliente;
 import br.edu.fasa.sistemaPousada.domainModel.IClienteRepositorio;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,12 +29,15 @@ public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteReposito
 
     @Override
     public List<Cliente> listarPorNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Cliente u where u.nome=:p order by u.nome");
+        query.setParameter("p", nome);
+        return query.getResultList();
     }
 
     @Override
     public List<Cliente> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Cliente u");
+        return query.getResultList();
     }
     
     

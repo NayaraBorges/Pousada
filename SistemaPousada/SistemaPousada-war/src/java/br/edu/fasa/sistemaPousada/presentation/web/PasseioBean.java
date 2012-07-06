@@ -9,6 +9,7 @@ import br.edu.fasa.sistemaPousada.domainModel.Passeio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 
 /**
@@ -21,19 +22,69 @@ public class PasseioBean implements Serializable {
     @EJB
     IPasseioRepositorio ejb;
     
+    int id;
     float preco;
     String tipo;
     String descricao;
-
+    
+    List<Passeio> listagem;
+    Passeio passeio;
+    
+    public void abrir(){
+        if(id > 0)
+            setPasseio(ejb.abrir(id));
+    }
+    
+    public String editar(){
+        abrir();
+        return "salvarPasseio.xhtml";
+    }
+    
+    public String apagar(){
+        abrir();
+        ejb.apagar(passeio);
+        listagem=null;
+        return "listarPasseio.xhtml";
+    }
+    
     public void salvar(){
-        Passeio pas = new Passeio();
-        pas.setPreco(preco);
-        pas.setTipo(tipo);
-        pas.setDescricao(descricao);
-        //descricao e tipo
-        ejb.salvar(pas);
+        abrir();
+        
+        if(passeio == null)
+            passeio = new Passeio();
+        
+        passeio.setPreco(preco);
+        passeio.setTipo(tipo);
+        passeio.setDescricao(descricao);
+        
+        ejb.salvar(passeio);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Passeio> getListagem() {
+        return listagem;
+    }
+
+    public void setListagem(List<Passeio> listagem) {
+        this.listagem = listagem;
+    }
+
+    public Passeio getPasseio() {
+        return passeio;
+    }
+
+    public void setPasseio(Passeio passeio) {
+        this.passeio = passeio;
+    }
+
+    
     public String getDescricao() {
         return descricao;
     }

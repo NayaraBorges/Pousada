@@ -8,6 +8,7 @@ import br.edu.fasa.sistemaPousada.domainModel.*;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 
 /**
@@ -28,17 +29,23 @@ public class ItemOSDAO extends DAOGenerico<ItemOS> implements IItemOSRepositorio
     
     @Override
     public List<ItemOS> listarPorData(Date data) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from ItemOS u where u.data=:p order by u.data");
+        query.setParameter("p", data);
+        return query.getResultList();
     }
 
     @Override
     public List<ItemOS> listarPorServico(Servico servico) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from ItemOS u where u.servico=:p order by u.servico");
+        query.setParameter("p", servico);
+        return query.getResultList();
     }
 
     @Override
     public List<ItemOS> listarPorOS(OS os) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from ItemOS u where u.os=:p order by u.os");
+        query.setParameter("p", os);
+        return query.getResultList();
     }
 
     // Add business logic below. (Right-click in editor and choose
@@ -46,7 +53,8 @@ public class ItemOSDAO extends DAOGenerico<ItemOS> implements IItemOSRepositorio
 
     @Override
     public List<ItemOS> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from ItemOS u");
+        return query.getResultList();
     }
     
 }

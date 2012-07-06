@@ -7,6 +7,7 @@ package br.edu.fasa.sistemaPousada.presentation.web;
 import br.edu.fasa.sistemaPousada.domainModel.IVeiculoRepositorio;
 import br.edu.fasa.sistemaPousada.domainModel.Veiculo;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -21,6 +22,7 @@ public class VeiculoBean implements Serializable {
     @EJB
     IVeiculoRepositorio ejb;
     
+    int id;
     String nome;
     float preco;
     String placa;
@@ -31,6 +33,72 @@ public class VeiculoBean implements Serializable {
     String tipo;
     String descricao;
 
+    List<Veiculo> listagem;
+    Veiculo veiculo;
+    
+    public void abrir(){
+        if(id > 0)
+            setVeiculo(ejb.abrir(id));
+    }
+    
+    public String editar(){
+        abrir();
+        return "salvarVeiculo.xhtml";
+    }
+    
+    public String apagar(){
+        abrir();
+        ejb.apagar(veiculo);
+        listagem=null;
+        return "listarVeiculo.xhtml";
+    }
+    
+    public void salvar(){
+        abrir();
+        
+        if(veiculo == null)
+            veiculo = new Veiculo();
+        
+        veiculo.setNome(nome);
+        veiculo.setPlaca(placa);
+        veiculo.setPreco(preco);
+        veiculo.setStatus(status);
+        veiculo.setTipo(tipo);
+        veiculo.setDescricao(descricao);
+        veiculo.setCor(cor);
+        veiculo.setAno(ano);
+        veiculo.setCategoria(categoria);
+        veiculo.setTipo(tipo);
+        veiculo.setDescricao(descricao);
+        
+        ejb.salvar(veiculo);
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Veiculo> getListagem() {
+        return listagem;
+    }
+
+    public void setListagem(List<Veiculo> listagem) {
+        this.listagem = listagem;
+    }
+    
     public String getDescricao() {
         return descricao;
     }
@@ -47,22 +115,6 @@ public class VeiculoBean implements Serializable {
         this.tipo = tipo;
     }
     
-    
-    public void salvar(){
-        Veiculo vei = new Veiculo();
-        vei.setNome(nome);
-        vei.setPreco(preco);
-        vei.setPlaca(placa);
-        vei.setCor(cor);
-        vei.setStatus(status);
-        vei.setAno(ano);
-        vei.setCategoria(categoria);
-        vei.setTipo(tipo);
-        vei.setDescricao(descricao);
-        ejb.salvar(vei);
-    
-    // descricao e tipo
-    }
     /**
      * Creates a new instance of VeiculoBean
      */

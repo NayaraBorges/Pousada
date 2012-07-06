@@ -18,10 +18,13 @@ public class Servico implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column(name="Descricao", nullable=false)
+    @Column(name="ServicoID")
+    protected Long id;
+    
+    @Column(name="Descricao")
     private String descricao;
-    @Column(name="Tipo", nullable=false)
+    
+    @Column(name="Tipo")
     private String tipo;
 
     public Servico() {

@@ -9,6 +9,7 @@ import br.edu.fasa.sistemaPousada.domainModel.OS;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,17 +29,22 @@ public class OSDAO extends DAOGenerico <OS> implements IOSRepositorio{
 
     @Override
     public List<OS> listarPorStatus(boolean status) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from OS u where u.status=:p order by u.status");
+        query.setParameter("p", status);
+        return query.getResultList();
     }
 
     @Override
     public List<OS> listarPorData(Date data) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from OS u where u.data=:p order by u.data");
+        query.setParameter("p", data);
+        return query.getResultList();
     }
 
     @Override
     public List<OS> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from OS u");
+        return query.getResultList();
     }
     
 }

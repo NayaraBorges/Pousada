@@ -8,6 +8,7 @@ import br.edu.fasa.sistemaPousada.domainModel.Funcionario;
 import br.edu.fasa.sistemaPousada.domainModel.IFuncionarioRepositorio;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,22 +28,29 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> implements IFuncion
 
     @Override
     public List<Funcionario> listarPorNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Funcionario u where u.nome=:p order by u.nome");
+        query.setParameter("p", nome);
+        return query.getResultList();
     }
 
     @Override
     public List<Funcionario> listarPorSetor(String setor) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Funcionario u where u.setor=:p order by u.setor");
+        query.setParameter("p", setor);
+        return query.getResultList();
     }
 
     @Override
     public List<Funcionario> listarPorTurno(String turno) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Funcionario u where u.turno=:p order by u.turno");
+        query.setParameter("p", turno);
+        return query.getResultList();
     }
 
     @Override
     public List<Funcionario> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query=(Query) manager.createQuery("select u from Camping u");
+        return query.getResultList();
     }
     
 }

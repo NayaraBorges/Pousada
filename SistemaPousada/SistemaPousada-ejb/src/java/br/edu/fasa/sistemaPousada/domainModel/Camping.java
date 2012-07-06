@@ -15,9 +15,7 @@ import javax.persistence.*;
 @Table(name="Camping")
 public class Camping extends Servico implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    
     @Column(name="Localizacao", nullable=false)
     private String localizacao;
     @Column(name="Preco", nullable=false)
@@ -30,14 +28,7 @@ public class Camping extends Servico implements Serializable {
     public Camping() {
     }
 
-    public Camping(Long id, String localizacao, float preco, int capacidade, boolean status, String descricao, String tipo) {
-        super(descricao, tipo);
-        this.id = id;
-        this.localizacao = localizacao;
-        this.preco = preco;
-        this.capacidade = capacidade;
-        this.status = status;
-    }
+    
     
     public int getCapacidade() {
         return capacidade;
@@ -71,14 +62,6 @@ public class Camping extends Servico implements Serializable {
         this.status = status;
     }
     
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {

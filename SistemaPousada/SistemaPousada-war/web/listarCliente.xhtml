@@ -3,14 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.prime.com.tr/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Pousada</title>
     </h:head>
     <h:body>
         <h:form>
             <ui:include src="cabecalho.xhtml"/>
-            
+            <h2>Lista dos Clientes</h2><p/>
+            <p:dataTable value="#{cliente.listagem}" var="item">
+                <f:facet name="header">
+                    <h:outputText value="Listagem dos clientes"/>
+                </f:facet>
+                <p:column filterBy="#{item.id}" sortBy="#{item.id}">
+                    <f:facet name="id">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column filterBy="#{item.nome}" sortBy="#{item.nome}">
+                    <f:facet name="nome">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nome}"/>
+                </p:column>
+                <p:column>
+                    <h:panelGrid columns="2">
+                        <h:commandLink value="Editar" action="#{cliente.editar()}">
+                            <f:setPropertyActionListener target="#{cliente.id}" value="#{item.id}" />
+                        </h:commandLink>
+                        <h:commandLink value="Apagar" action="#{cliente.apagar()}" onclick="return confirm('Deseja realmente apagar?');">
+                            <f:setPropertyActionListener target="#{cliente.id}" value="#{item.id}" />
+                        </h:commandLink>
+                    </h:panelGrid>
+
+                </p:column>
+
+            </p:dataTable>
         </h:form>
     </h:body>
 </html>

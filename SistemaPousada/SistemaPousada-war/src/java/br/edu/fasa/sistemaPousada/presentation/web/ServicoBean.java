@@ -45,17 +45,6 @@ public class ServicoBean implements Serializable {
         return "listarServico.xhtml";
     }
     
-    public void salvar(){
-        abrir();
-        
-        if(servico == null)
-            servico = new Servico();
-        
-        servico.setTipo(tipo);
-        servico.setDescricao(descricao);
-        
-        ejb.salvar(servico);
-    }
     public int getId() {
         return id;
     }
